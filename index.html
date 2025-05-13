@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Study Planner PWA</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Study Planner">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Study Planner</h1>
+  <section>
+    <h2>Дорожная карта</h2>
+    <table contenteditable="true" id="roadmap">
+      <thead><tr><th>День</th><th>Тема</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Math: Algebra</td></tr>
+        <tr><td>2</td><td>Physics: Mechanics</td></tr>
+        <tr><td>3</td><td>Chemistry: Organic</td></tr>
+        <tr><td>4</td><td>Biology: Botany</td></tr>
+        <tr><td>5</td><td>History: Modern</td></tr>
+        <tr><td>6</td><td>Practice Quiz</td></tr>
+        <tr><td>7</td><td>Final Revision</td></tr>
+      </tbody>
+    </table>
+    <button onclick="saveTable('roadmap')">Сохранить</button>
+  </section>
+  <section>
+    <h2>Kanban</h2>
+    <table contenteditable="true" id="kanban">
+      <thead><tr><th>Задача</th><th>To Do</th><th>In Progress</th><th>Done</th></tr></thead>
+      <tbody>
+        <tr><td>Math: Algebra</td><td></td><td></td><td>✔</td></tr>
+        <tr><td>Physics: Mechanics</td><td></td><td>✔</td><td></td></tr>
+        <tr><td>Chemistry: Organic</td><td>✔</td><td></td><td></td></tr>
+        <tr><td>Biology: Botany</td><td>✔</td><td></td><td></td></tr>
+        <tr><td>History: Modern</td><td>✔</td><td></td><td></td></tr>
+        <tr><td>Practice Quiz</td><td>✔</td><td></td><td></td></tr>
+        <tr><td>Final Revision</td><td>✔</td><td></td><td></td></tr>
+      </tbody>
+    </table>
+    <button onclick="saveTable('kanban')">Сохранить</button>
+  </section>
+  <script>
+    function saveTable(id) {
+      localStorage.setItem(id, document.getElementById(id).innerHTML);
+      alert('Сохранено!');
+    }
+    function loadTable(id) {
+      const data = localStorage.getItem(id);
+      if (data) document.getElementById(id).innerHTML = data;
+    }
+    window.onload = () => { loadTable('roadmap'); loadTable('kanban'); };
+  </script>
+</body>
+</html>
